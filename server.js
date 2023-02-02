@@ -19,7 +19,7 @@ app.get('/', function(request, response) {
 });
 
 // Запуск сервера
-server.listen(5000, function() {
+server.listen(80, function() {
     console.log('Запускаю сервер на порте 5000');
 });
 // Обработчик веб-сокетов
