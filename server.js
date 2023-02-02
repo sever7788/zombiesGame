@@ -10,7 +10,7 @@ function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-app.set('port', 5000);
+app.set('port', 80);
 app.use('/static', express.static(__dirname + '/static'));
 
 // Маршруты
