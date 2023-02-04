@@ -5,12 +5,12 @@ var socketIO = require('socket.io');
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
-
+let $PORT = process.env.$PORT || 80;
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-app.set('port', process.env.$PORT || 80);
+app.set('port', $PORT);
 app.use('/static', express.static(__dirname + '/static'));
 
 // Маршруты
@@ -19,8 +19,8 @@ app.get('/', function(request, response) {
 });
 
 // Запуск сервера
-server.listen(process.env.$PORT || 80, function() {
-    console.log('Запускаю сервер на порте 5000');
+server.listen($PORT, function() {
+    console.log(`Запускаю сервер на порте ${$PORT}`);
 });
 // Обработчик веб-сокетов
 io.on('connection', function(socket) {
