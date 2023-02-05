@@ -10,7 +10,7 @@ function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-app.set('port', process.env.$PORT || 80);
+app.set('port', process.env.PORT || 80);
 app.use('/static', express.static(__dirname + '/static'));
 
 // Маршруты
@@ -19,7 +19,7 @@ app.get('/', function(request, response) {
 });
 
 // Запуск сервера
-server.listen(process.env.$PORT || 80, function() {
+server.listen(process.env.PORT || 80, function() {
     console.log('Запускаю сервер на порте 5000');
 });
 // Обработчик веб-сокетов
