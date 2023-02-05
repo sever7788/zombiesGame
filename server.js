@@ -27,7 +27,6 @@ io.on('connection', function(socket) {
 });
 
 var players = {};
-var zombie = false
 io.on('connection', function(socket) {
   socket.on('new player', function() {
     players[socket.id] = {
@@ -35,26 +34,11 @@ io.on('connection', function(socket) {
       y: 0,
     };
   });
-  // socket.on('movement', function(data) {
-  //   var player = players[socket.id] || {};
-  //   if (data.left) {
-  //     player.x -= 5;
-  //   }
-  //   if (data.up) {
-  //     player.y -= 5;
-  //   }
-  //   if (data.right) {
-  //     player.x += 5;
-  //   }
-  //   if (data.down) {
-  //     player.y += 5;
-  //   }
-  //   if(player.isZombie)
-  //   for(const [id, p] of Object.entries(players)) {
-  //     if(id!==socket.id && !p.isZombie)
-  //       p.isZombie = checkIntersection(player.x, player.y, 60, 113, p.x, p.y, 60, 113);
-  //   }
-  // });
+  socket.on('movement', function(data) {
+    var player = players[socket.id] || {};
+      player.x = data.x;
+      player.y = data.y;
+  });
 });
 setInterval(function() {
   io.sockets.emit('state', players);

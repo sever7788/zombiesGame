@@ -22,22 +22,24 @@ socket.on("state", function (players) {
   for (var id in players) {
     var player = players[id];
     let element = document.querySelector(`#${id}`);
-    if (element) {
-      element.offsetX = player.x;
-      element.offsetY = player.y;
-    } else {
-      element = document.createElement("div", [options]);
-      element.style = {
-        background: "red",
-        position: "absolute",
-        width: "50px",
-        height: "50px",
-      };
-      element.offsetX = player.x;
-      element.offsetY = player.y;
-      let body = document.querySelector('body');
-      insertBefore(element, body)
-    }
-    context.drawImage(img, player.x, player.y, 60, 60);
+    console.log(socket.id)
+    if (id !== socket.id)
+      if (element) {
+        element.style.left = player.x + "px";
+        element.style.top = player.y + "px";
+      } else {
+        element = document.createElement("div");
+        element.id = `${id}`;
+        element.style = {
+          background: "red",
+          position: "absolute",
+          width: "50px",
+          height: "50px",
+        };
+        element.style.left = player.x + "px";
+        element.style.top = player.y + "px";
+        let body = document.querySelector("body");
+        body.insertBefore(element, null);
+      }
   }
 });
